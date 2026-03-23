@@ -1,16 +1,23 @@
 'use client';
 
 import { useAuth } from './hooks/auth-hook';
+import { useSearchParams } from 'next/navigation';
+import type { DgaUser } from '../app/types/auth';
 
 function Home() {
   const { user, loading } = useAuth();
+  const userInfo: DgaUser | null = user;
 
-  const fullName = [user?.firstName, user?.lastName]
+  const searchParams = useSearchParams();
+  const appIdFromParam = searchParams.get('appId');
+
+  const fullName = [userInfo?.firstName, userInfo?.lastName]
     .filter(Boolean)
     .join(' ')
     .trim();
 
-  console.log('HOME USER:', user);
+  console.log('HOME USER:', userInfo);
+  console.log('appIdFromParam:', appIdFromParam);
 
   return (
     <section className="p-6">
@@ -19,7 +26,7 @@ function Home() {
 
         {loading ? (
           <span className="text-gray-500">กำลังโหลด...</span>
-        ) : user ? (
+        ) : userInfo ? (
           <div className="space-y-3 text-sm text-gray-800">
             <div>
               <span className="font-medium">ชื่อผู้ใช้:</span>{' '}
@@ -28,53 +35,53 @@ function Home() {
 
             <div>
               <span className="font-medium">appId:</span>{' '}
-              {user?.appId || '-'}
+              {appIdFromParam || userInfo?.appId || '-'}
             </div>
 
             <div>
               <span className="font-medium">userId:</span>{' '}
-              {user?.userId || '-'}
+              {userInfo?.userId || '-'}
             </div>
 
             <div>
               <span className="font-medium">citizenId:</span>{' '}
-              {user?.citizenId || '-'}
+              {userInfo?.citizenId || '-'}
             </div>
 
             <div>
               <span className="font-medium">firstName:</span>{' '}
-              {user?.firstName || '-'}
+              {userInfo?.firstName || '-'}
             </div>
 
             <div>
               <span className="font-medium">middleName:</span>{' '}
-              {user?.middleName || '-'}
+              {userInfo?.middleName || '-'}
             </div>
 
             <div>
               <span className="font-medium">lastName:</span>{' '}
-              {user?.lastName || '-'}
+              {userInfo?.lastName || '-'}
             </div>
 
             <div>
               <span className="font-medium">dateOfBirthString:</span>{' '}
-              {user?.dateOfBirthString || '-'}
+              {userInfo?.dateOfBirthString || '-'}
             </div>
 
             <div>
               <span className="font-medium">mobile:</span>{' '}
-              {user?.mobile || '-'}
+              {userInfo?.mobile || '-'}
             </div>
 
             <div>
               <span className="font-medium">email:</span>{' '}
-              {user?.email || '-'}
+              {userInfo?.email || '-'}
             </div>
 
             <div>
               <span className="font-medium">notification:</span>{' '}
-              {typeof user?.notification === 'boolean'
-                ? user.notification
+              {typeof userInfo?.notification === 'boolean'
+                ? userInfo.notification
                   ? 'true'
                   : 'false'
                 : '-'}
