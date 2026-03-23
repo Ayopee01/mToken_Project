@@ -27,6 +27,11 @@ function Home() {
             </div>
 
             <div>
+              <span className="font-medium">appId:</span>{' '}
+              {user?.appId || '-'}
+            </div>
+
+            <div>
               <span className="font-medium">userId:</span>{' '}
               {user?.userId || '-'}
             </div>
