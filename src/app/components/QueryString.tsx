@@ -62,12 +62,17 @@ function QueryString() {
           console.error("Login Error:", data?.error || data?.message || res.status);
           return;
         }
-        
-        console.log("LOGIN RESPONSE:", data);
-        console.log("USER DATA:", data.user);
-        // Login สำเร็จ -> เก็บ user ไว้ global
-        setUser(data.user ?? null);
 
+        // Login สำเร็จ -> เก็บ user ไว้ global
+        // setUser(data.user ?? null);
+        setUser(
+          data.user
+            ? {
+              ...data.user,
+              appId,
+            }
+            : null
+        );
 
         // หา userId จาก data.user ใช้ในการ notification
         const userId = data.user?.userId;
@@ -123,3 +128,4 @@ function QueryString() {
 }
 
 export default QueryString;
+
