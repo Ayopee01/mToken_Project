@@ -17,7 +17,7 @@ function Home() {
   console.log('HOME USER INFO:', userInfo);
 
   return (
-    <section className="p-6">
+    <section className="p-6 min-h-screen flex items-center justify-center">
       <main className="max-w-2xl rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
         <h1 className="mb-4 text-xl font-semibold text-gray-800">ข้อมูลผู้ใช้</h1>
 
@@ -82,6 +82,16 @@ function Home() {
                   ? 'true'
                   : 'false'
                 : '-'}
+            </div>
+            <div>
+              <p>Test back button</p>
+              <div className='flex gap-3'>
+                <a className='hover:text-red-400' href="/landing/test1">test1</a>
+                <a className='hover:text-red-400' href="/landing/test2">test2</a>
+                <a className='hover:text-red-400' href="/landing/test3">test3</a>
+                <a className='hover:text-red-400' href="/landing/test4">test4</a>
+                <a className='hover:text-red-400' href="/landing/test5">test5</a>
+              </div>
             </div>
           </div>
         ) : (
