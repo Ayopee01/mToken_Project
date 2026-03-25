@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from "next/link";
 
 function page5() {
     return (
@@ -8,12 +9,12 @@ function page5() {
                 <div>
                     <p className=''>Test back button</p>
                     <div className='flex flex-col items-center'>
-                        <a className='hover:text-red-400' href="/landing/test1">test1</a>
-                        <a className='hover:text-red-400' href="/landing/test2">test2</a>
-                        <a className='hover:text-red-400' href="/landing/test3">test3</a>
-                        <a className='hover:text-red-400' href="/landing/test4">test4</a>
-                        <a className='hover:text-red-400' href="/landing/test5">test5</a>
-                        <a className='hover:text-red-400' href="/">home</a>
+                        <Link className='hover:text-red-400' href="/landing/test1">Test1</Link>
+                        <Link className='hover:text-red-400' href="/landing/test2">Test2</Link>
+                        <Link className='hover:text-red-400' href="/landing/test3">Test3</Link>
+                        <Link className='hover:text-red-400' href="/landing/test4">Test4</Link>
+                        <Link className='hover:text-red-400' href="/landing/test5">Test5</Link>
+                        <Link className='hover:text-red-400' href="/">ไปหน้า Profile</Link>
                     </div>
                 </div>
             </div>

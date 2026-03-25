@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useAuth } from './hooks/auth-hook';
 import type { DgaUser } from '../app/types/auth';
+import Link from "next/link";
 
 function Home() {
   const { user, loading } = useAuth();
@@ -86,11 +87,11 @@ function Home() {
             <div>
               <p>Test back button</p>
               <div className='flex gap-3'>
-                <a className='hover:text-red-400' href="/landing/test1">test1</a>
-                <a className='hover:text-red-400' href="/landing/test2">test2</a>
-                <a className='hover:text-red-400' href="/landing/test3">test3</a>
-                <a className='hover:text-red-400' href="/landing/test4">test4</a>
-                <a className='hover:text-red-400' href="/landing/test5">test5</a>
+                <Link className='hover:text-red-400' href="/landing/test1">Test1</Link>
+                <Link className='hover:text-red-400' href="/landing/test2">Test2</Link>
+                <Link className='hover:text-red-400' href="/landing/test3">Test3</Link>
+                <Link className='hover:text-red-400' href="/landing/test4">Test4</Link>
+                <Link className='hover:text-red-400' href="/landing/test5">Test5</Link>
               </div>
             </div>
           </div>
