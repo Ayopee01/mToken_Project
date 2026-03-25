@@ -13,6 +13,7 @@ function page3() {
                         <a className='hover:text-red-400' href="/landing/test3">test3</a>
                         <a className='hover:text-red-400' href="/landing/test4">test4</a>
                         <a className='hover:text-red-400' href="/landing/test5">test5</a>
+                        <a className='hover:text-red-400' href="/">home</a>
                     </div>
                 </div>
             </div>

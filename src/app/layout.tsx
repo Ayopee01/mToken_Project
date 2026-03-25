@@ -1,50 +1,47 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Noto_Sans_Thai } from "next/font/google";
 import Script from "next/script";
-import { Suspense } from "react";
 import "./globals.css";
-import { AuthProvider } from "./hooks/auth-hook";
-import QueryString from "./components/QueryString";
+import LayoutClient from "./layout-client";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/* -------------------- Font configuration -------------------- */
+
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const notoThai = Noto_Sans_Thai({
+  subsets: ["thai"],
+  variable: "--font-thai",
+  weight: ["400", "700"],
+  display: "swap",
 });
+
+/* -------------------- Metadata -------------------- */
 
 export const metadata: Metadata = {
-  title: "mToken",
-  description: "mToken_Project",
+  title: "mToken Project",
+  description: "mToken Demo",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+/* -------------------- Root layout component -------------------- */
+
+function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <AuthProvider>
-          <Suspense fallback={null}>
-            <QueryString />
-          </Suspense>
-
-          {children}
-        </AuthProvider>
-
+    <html lang="th">
+      <body className={`${inter.variable} ${notoThai.variable} antialiased`}>
         <Script
           src="https://czp.dga.or.th/cportal/sdk/iu/v4/sdk.js"
-          strategy="afterInteractive"
-        />
+          strategy="afterInteractive">
+        </Script>
+        <LayoutClient>
+          {children}
+        </LayoutClient>
       </body>
     </html>
   );
 }
+
+export default RootLayout;
