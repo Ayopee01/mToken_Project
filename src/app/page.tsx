@@ -1,13 +1,17 @@
 'use client';
 
 import { useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useAuth } from './hooks/auth-hook';
 import type { DgaUser } from '../app/types/auth';
 import Link from "next/link";
 
 function Home() {
   const { user, loading } = useAuth();
+  const searchParams = useSearchParams();
+
   const userInfo: DgaUser | null = user;
+  const queryAppId = searchParams.get('appId');
 
   const fullName = useMemo(() => {
     const name = [user?.firstName, user?.lastName].filter(Boolean).join(' ').trim();
@@ -16,6 +20,7 @@ function Home() {
 
   console.log('HOME USER:', user);
   console.log('HOME USER INFO:', userInfo);
+  console.log('QUERY appId:', queryAppId);
 
   return (
     <section className="p-6 min-h-screen flex items-center justify-center">
@@ -32,7 +37,12 @@ function Home() {
             </div>
 
             <div>
-              <span className="font-medium">appId:</span>{' '}
+              <span className="font-medium">appId จาก query:</span>{' '}
+              {queryAppId || '-'}
+            </div>
+
+            <div>
+              <span className="font-medium">appId จาก user:</span>{' '}
               {user?.appId || '-'}
             </div>
 
@@ -84,6 +94,7 @@ function Home() {
                   : 'false'
                 : '-'}
             </div>
+
             <div>
               <p>Test back button</p>
               <div className='flex gap-3'>
